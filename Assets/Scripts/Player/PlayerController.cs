@@ -59,15 +59,39 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         float xInput = Input.GetAxisRaw("Horizontal");
-        float yInput = Input.GetAxisRaw("Vertical");
+        //float yInput = Input.GetAxisRaw("Vertical");
+
+        if (isGrounded)
+        {
+            rb.gravityScale = 1;
+            anim.ResetTrigger("JumpAtk");
+        }
+
+        AnimatorClipInfo[] clipInfo = anim.GetCurrentAnimatorClipInfo(0);
 
         isGrounded = Physics2D.OverlapCircle(GroundCheck.position, groundCheckRadius, isGroundLayer);
 
-        rb.velocity = new Vector2(xInput * speed, rb.velocity.y);
+        if (clipInfo[0].clip.name == "Throw")
+        {
+            rb.velocity = Vector2.zero;
+        }
+        else
+        {
+            rb.velocity = new Vector2(xInput * speed, rb.velocity.y);
+            if (Input.GetButtonDown("Fire1"))
+            {
+                anim.SetTrigger("Throw");
+            }
+        }
 
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
             rb.AddForce(Vector2.up * jumpforce, ForceMode2D.Impulse);
+        }
+
+        if (Input.GetButtonDown("Jump") && !isGrounded)
+        {
+            anim.SetTrigger("JumpAtk");
         }
 
         anim.SetBool("IsGrounded", isGrounded);
@@ -75,6 +99,42 @@ public class PlayerController : MonoBehaviour
 
         //Sprite Flipping
         if (xInput != 0) sr.flipX = (xInput < 0);
-       
+    }
+
+    public void IncreaseGravity()
+    {
+        rb.gravityScale = 5;
+    }
+
+    //trigger functions are called most other times - but would still require at least one object to be physics enabled
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        
+    }
+
+    //Collision functions are only called - when one of the two objects is a dynamic rigidbody
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        Debug.Log(collision.gameObject.name);
     }
 }
