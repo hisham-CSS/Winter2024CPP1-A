@@ -131,7 +131,7 @@ TextureImporter:
         width: 5113
         height: 433
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -139,6 +139,69 @@ TextureImporter:
       bones: []
       spriteID: 89eff212872138f46932a3b8a32fd38b
       internalID: -1422594460
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 1UP
+      rect:
+        serializedVersion: 2
+        x: 241
+        y: 84
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 167c7b180b34a274783c3ec295a3b80c
+      internalID: 1142971775
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Powerup
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 134
+        width: 16
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f824f26f035cc384d89106b43171fb45
+      internalID: -942850687
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Coin
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 139
+        width: 8
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c5e40760fb7febd428b66fb03497369a
+      internalID: 394524594
       vertices: []
       indices: 
       edges: []
@@ -154,7 +217,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
+      1UP: 1142971775
+      Coin: 394524594
       DonutPlains1_DONE_0: -1422594460
+      Powerup: -942850687
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 
 //ensures that these components are attached to the gameobject
@@ -15,13 +16,55 @@ public class PlayerController : MonoBehaviour
 
     //Movemement Var
     [SerializeField] private float speed = 7.0f;
-    [SerializeField] private float jumpforce = 300.0f;
+    [SerializeField] private float jumpForce = 300.0f;
 
     //Groundcheck stuff
     [SerializeField] private bool isGrounded;
     [SerializeField] private Transform GroundCheck;
     [SerializeField] private LayerMask isGroundLayer;
     [SerializeField] private float groundCheckRadius = 0.02f;
+
+    [SerializeField] private int maxLives = 5;
+
+    //Fields and Properties
+    private int _lives = 3;
+    public int lives
+    {
+        get => _lives;
+        set
+        {
+            //if (_lives > value)
+            //we lost a life = respawn
+
+            _lives = value;
+
+            //if (_lives > maxLives)
+            //we've increased past our life maximum - so we should be set to our maxium
+            //_lives = maxLives
+
+            //if (_lives <= 0)
+            //GameOver!!!
+
+            if (TestMode) Debug.Log("Lives has been set to: " + _lives.ToString());
+        }
+    }
+
+    private int _score = 0;
+    public int score
+    {
+        get => _score;
+        set
+        {
+            _score = value;
+
+            if (TestMode) Debug.Log("Score has been set to: " + _score.ToString());
+        }
+    }
+
+    //Coroutine Variable
+    Coroutine jumpForceChange;
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -86,7 +129,7 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
-            rb.AddForce(Vector2.up * jumpforce, ForceMode2D.Impulse);
+            rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         }
 
         if (Input.GetButtonDown("Jump") && !isGrounded)
@@ -104,6 +147,29 @@ public class PlayerController : MonoBehaviour
     public void IncreaseGravity()
     {
         rb.gravityScale = 5;
+    }
+
+    public void StartJumpForceChange()
+    {
+        if (jumpForceChange == null) 
+            jumpForceChange = StartCoroutine(JumpForceChange());
+        else
+        {
+            StopCoroutine(jumpForceChange);
+            jumpForceChange = null;
+            jumpForce /= 2;
+            jumpForceChange = StartCoroutine(JumpForceChange());
+        }
+
+    }
+
+
+    IEnumerator JumpForceChange()
+    {
+        jumpForce *= 2;
+        yield return new WaitForSeconds(5.0f);
+        jumpForce /= 2;
+        jumpForceChange = null;
     }
 
     //trigger functions are called most other times - but would still require at least one object to be physics enabled
