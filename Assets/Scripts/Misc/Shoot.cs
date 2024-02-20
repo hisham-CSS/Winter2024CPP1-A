@@ -8,7 +8,9 @@ public class Shoot : MonoBehaviour
 
     SpriteRenderer sr;
 
-    public float projectileSpeed = 7.0f;
+    [SerializeField] float initalXVelocity = 7.0f;
+    [SerializeField] float initalYVelocity = 7.0f;
+
     public Transform spawnPointLeft;
     public Transform spawnPointRight;
 
@@ -18,11 +20,6 @@ public class Shoot : MonoBehaviour
     void Start()
     {
         sr = GetComponent<SpriteRenderer>();
-
-        if (projectileSpeed <= 0)
-        {
-            projectileSpeed = 7.0f;
-        }
 
         if (!spawnPointLeft || !spawnPointRight || !projectilePrefab)
         {
@@ -36,12 +33,14 @@ public class Shoot : MonoBehaviour
         if (!sr.flipX)
         {
             Projectile curProjectile = Instantiate(projectilePrefab, spawnPointRight.position, spawnPointRight.rotation);
-            curProjectile.speed = projectileSpeed;
+            curProjectile.xVel = initalXVelocity;
+            curProjectile.yVel = initalYVelocity;
         }
         else
         {
             Projectile curProjectile = Instantiate(projectilePrefab, spawnPointLeft.position, spawnPointLeft.rotation);
-            curProjectile.speed = projectileSpeed;
+            curProjectile.xVel = -initalXVelocity;
+            curProjectile.yVel = initalYVelocity;
         }
     }
 }

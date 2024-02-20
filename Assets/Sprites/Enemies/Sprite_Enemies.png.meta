@@ -131,7 +131,7 @@ TextureImporter:
         width: 8
         height: 8
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -139,6 +139,195 @@ TextureImporter:
       bones: []
       spriteID: 31d28a504a25f74429c0641dce3df29d
       internalID: -1415878387
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walker1
+      rect:
+        serializedVersion: 2
+        x: 27
+        y: 123
+        width: 16
+        height: 27
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 01c0c4d93dcb4d744bd11f864664688d
+      internalID: -1116464109
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walker2
+      rect:
+        serializedVersion: 2
+        x: 46
+        y: 123
+        width: 16
+        height: 26
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 024b4455be1feb0469acb5fba2a1fba1
+      internalID: -430477137
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WalkerSquish
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 120
+        width: 16
+        height: 8
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 43187034ac8659046a026521afa7012b
+      internalID: -133958774
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WalkerDeath
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 137
+        width: 16
+        height: 16
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b56e3480c57d0ad42a21588b2a6f3576
+      internalID: 486629027
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TurretFire1
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 312
+        width: 16
+        height: 31
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 81dc21628175be6499e66d550c63c49a
+      internalID: -1102059867
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TurretFire2
+      rect:
+        serializedVersion: 2
+        x: 823
+        y: 312
+        width: 24
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b55762109c883e4c863dd8d821dabd0
+      internalID: 1962497006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TurretFire3
+      rect:
+        serializedVersion: 2
+        x: 852
+        y: 312
+        width: 24
+        height: 31
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c807805b08c5de04881e086c04118a9f
+      internalID: 1272410964
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TurretIdle
+      rect:
+        serializedVersion: 2
+        x: 881
+        y: 312
+        width: 16
+        height: 31
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bfef15323b10be64ea125f1745bcf414
+      internalID: -1996378786
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnemyProjectile
+      rect:
+        serializedVersion: 2
+        x: 801
+        y: 360
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 16bf54d596b38124bb7854b2919a5636
+      internalID: -1021405734
       vertices: []
       indices: 
       edges: []
@@ -154,7 +343,16 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
+      EnemyProjectile: -1021405734
       PlayerProjectile: -1415878387
+      TurretFire1: -1102059867
+      TurretFire2: 1962497006
+      TurretFire3: 1272410964
+      TurretIdle: -1996378786
+      Walker1: -1116464109
+      Walker2: -430477137
+      WalkerDeath: 486629027
+      WalkerSquish: -133958774
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

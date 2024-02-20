@@ -46,4 +46,9 @@ public class Collectible : MonoBehaviour
 
         
     }
+
+    private void OnDestroy()
+    {
+       
+    }
 }
