@@ -18,10 +18,12 @@ public class CameraFollow : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (!GameManager.Instance || !GameManager.Instance.PlayerInstance) return;
+
         Vector3 cameraPos = transform.position;
 
-        cameraPos.x = Mathf.Clamp(player.transform.position.x, minXClamp, maxXClamp);
-        cameraPos.y = Mathf.Clamp(player.transform.position.y, minYClamp, maxYClamp);
+        cameraPos.x = Mathf.Clamp(GameManager.Instance.PlayerInstance.transform.position.x, minXClamp, maxXClamp);
+        cameraPos.y = Mathf.Clamp(GameManager.Instance.PlayerInstance.transform.position.y, minYClamp, maxYClamp);
 
         transform.position = Vector3.SmoothDamp(transform.position, cameraPos, ref velocity, smoothTime);
     }

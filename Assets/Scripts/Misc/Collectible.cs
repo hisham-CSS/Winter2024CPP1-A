@@ -34,10 +34,10 @@ public class Collectible : MonoBehaviour
                     pc.StartJumpForceChange();
                     break;
                 case PickupType.Life:
-                    pc.lives++;
+                    GameManager.Instance.lives++;
                     break;
                 case PickupType.Score:
-                    pc.score++;
+                    GameManager.Instance.score++;
                     break; 
             }
 

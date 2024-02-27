@@ -24,47 +24,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private LayerMask isGroundLayer;
     [SerializeField] private float groundCheckRadius = 0.02f;
 
-    [SerializeField] private int maxLives = 5;
-
-    //Fields and Properties
-    private int _lives = 3;
-    public int lives
-    {
-        get => _lives;
-        set
-        {
-            //if (_lives > value)
-            //we lost a life = respawn
-
-            _lives = value;
-
-            //if (_lives > maxLives)
-            //we've increased past our life maximum - so we should be set to our maxium
-            //_lives = maxLives
-
-            //if (_lives <= 0)
-            //GameOver!!!
-
-            if (TestMode) Debug.Log("Lives has been set to: " + _lives.ToString());
-        }
-    }
-
-    private int _score = 0;
-    public int score
-    {
-        get => _score;
-        set
-        {
-            _score = value;
-
-            if (TestMode) Debug.Log("Score has been set to: " + _score.ToString());
-        }
-    }
-
     //Coroutine Variable
     Coroutine jumpForceChange;
-
-
 
     // Start is called before the first frame update
     void Start()
@@ -175,6 +136,11 @@ public class PlayerController : MonoBehaviour
     //trigger functions are called most other times - but would still require at least one object to be physics enabled
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.CompareTag("EnemyProjectile"))
+        {
+            GameManager.Instance.lives--;
+        }
+
         if (collision.CompareTag("Squish"))
         {
             collision.transform.parent.gameObject.GetComponent<Enemy>().TakeDamage(9999);
