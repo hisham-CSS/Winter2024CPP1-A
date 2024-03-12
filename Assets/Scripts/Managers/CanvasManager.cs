@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.Audio;
 
 public class CanvasManager : MonoBehaviour
 {
+    public AudioMixer audioMixer;
+
     [Header("Button")]
     public Button playButton;
     public Button settingsButton;
@@ -22,10 +25,14 @@ public class CanvasManager : MonoBehaviour
 
     [Header("Text")]
     public TMP_Text livesText;
-    public TMP_Text volSliderText;
+    public TMP_Text masterVolSliderText;
+    public TMP_Text musicVolSliderText;
+    public TMP_Text sfxVolSliderText;
 
     [Header("Slider")]
-    public Slider volSlider;
+    public Slider masterVolSlider;
+    public Slider musicVolSlider;
+    public Slider sfxVolSlider;
 
     // Start is called before the first frame update
 
@@ -37,6 +44,9 @@ public class CanvasManager : MonoBehaviour
         if (playButton)
             playButton.onClick.AddListener(() => GameManager.Instance.ChangeScene(1));
 
+        if (returnToMenuButton)
+            returnToMenuButton.onClick.AddListener(() => GameManager.Instance.ChangeScene(0));
+
         if (settingsButton)
             settingsButton.onClick.AddListener(() => SetMenus(settingsMenu, mainMenu));
 
@@ -44,13 +54,39 @@ public class CanvasManager : MonoBehaviour
             backButton.onClick.AddListener(() => SetMenus(mainMenu, settingsMenu));
 
         if (resumeButton)
-            resumeButton.onClick.AddListener(() => SetMenus(null, pauseMenu));
+            resumeButton.onClick.AddListener(() => {
+                SetMenus(null, pauseMenu);
+                Time.timeScale = 1;
+                });
 
-        if (volSlider)
+        if (masterVolSlider)
         {
-            volSlider.onValueChanged.AddListener(OnSliderValueChanged);
-            if (volSliderText)
-                volSliderText.text = volSlider.value.ToString();
+            masterVolSlider.onValueChanged.AddListener((value) => OnSliderValueChanged(value, masterVolSliderText, "MasterVol"));
+            float newValue;
+            audioMixer.GetFloat("MasterVol", out newValue);
+            masterVolSlider.value = newValue + 80;
+            if (masterVolSliderText)
+                masterVolSliderText.text = masterVolSlider.value.ToString();
+        }
+
+        if (musicVolSlider)
+        {
+            musicVolSlider.onValueChanged.AddListener((value) => OnSliderValueChanged(value, musicVolSliderText, "MusicVol"));
+            float newValue;
+            audioMixer.GetFloat("MasterVol", out newValue);
+            musicVolSlider.value = newValue + 80;
+            if (musicVolSliderText)
+                musicVolSliderText.text = musicVolSlider.value.ToString();
+        }
+
+        if (sfxVolSlider)
+        {
+            sfxVolSlider.onValueChanged.AddListener((value) => OnSliderValueChanged(value, sfxVolSliderText, "SFXVol"));
+            float newValue;
+            audioMixer.GetFloat("MasterVol", out newValue);
+            sfxVolSlider.value = newValue + 80;
+            if (sfxVolSliderText)
+                sfxVolSliderText.text = sfxVolSlider.value.ToString();
         }
 
         if (livesText)
@@ -74,9 +110,10 @@ public class CanvasManager : MonoBehaviour
             menuToInactivate.SetActive(false);
     }
 
-    void OnSliderValueChanged(float value)
+    void OnSliderValueChanged(float value, TMP_Text volSliderText, string sliderName)
     {
         volSliderText.text = value.ToString();
+        audioMixer.SetFloat(sliderName, value - 80);
     }
 
     void Quit()
@@ -95,17 +132,20 @@ public class CanvasManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.P))
         {
-            pauseMenu.SetActive(!pauseMenu.activeSelf);
+            SetPause();
+        }
+    }
 
-            //hints for the lab
-            if (pauseMenu.activeSelf)
-            {
-                //do something to pause
-            }
-            else
-            {
-                //do something else
-            }
+    void SetPause()
+    {
+        pauseMenu.SetActive(!pauseMenu.activeSelf);
+        if (pauseMenu.activeSelf)
+        {
+            Time.timeScale = 0;
+        }
+        else
+        {
+            Time.timeScale = 1;
         }
     }
 }

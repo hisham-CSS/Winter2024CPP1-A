@@ -11,6 +11,8 @@ public class Shoot : MonoBehaviour
     [SerializeField] float initalXVelocity = 7.0f;
     [SerializeField] float initalYVelocity = 7.0f;
 
+    [SerializeField] AudioClip shootSound;
+
     public Transform spawnPointLeft;
     public Transform spawnPointRight;
 
@@ -42,5 +44,8 @@ public class Shoot : MonoBehaviour
             curProjectile.xVel = -initalXVelocity;
             curProjectile.yVel = initalYVelocity;
         }
+
+        if (shootSound)
+            GetComponent<AudioSource>().PlayOneShot(shootSound);
     }
 }

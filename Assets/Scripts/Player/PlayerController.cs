@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D rb;
     SpriteRenderer sr;
     Animator anim;
+    AudioSource audioSource;
 
     //Movemement Var
     [SerializeField] private float speed = 7.0f;
@@ -24,6 +25,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private LayerMask isGroundLayer;
     [SerializeField] private float groundCheckRadius = 0.02f;
 
+    //Audio Clips
+    [SerializeField] AudioClip jumpSound;
+    [SerializeField] AudioClip stompSound;
+
     //Coroutine Variable
     Coroutine jumpForceChange;
 
@@ -34,6 +39,7 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>(); 
         anim = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
 
         if (speed <= 0)
         {
@@ -62,6 +68,8 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Time.timeScale == 0) return;
+
         float xInput = Input.GetAxisRaw("Horizontal");
         //float yInput = Input.GetAxisRaw("Vertical");
 
@@ -91,6 +99,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+            audioSource.PlayOneShot(jumpSound);
         }
 
         if (Input.GetButtonDown("Jump") && !isGrounded)
@@ -147,6 +156,7 @@ public class PlayerController : MonoBehaviour
 
             rb.velocity = Vector2.zero;
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+            audioSource.PlayOneShot(stompSound);
         }
     }
 

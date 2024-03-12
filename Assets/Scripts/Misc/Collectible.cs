@@ -12,7 +12,8 @@ public class Collectible : MonoBehaviour
     }
 
     [SerializeField] PickupType currentPickup;
-    [SerializeField] float timeToDestroy = 0;
+    [SerializeField] AudioClip pickupSound;
+    //[SerializeField] float timeToDestroy = 0;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -40,8 +41,9 @@ public class Collectible : MonoBehaviour
                     GameManager.Instance.score++;
                     break; 
             }
-
-            Destroy(gameObject, timeToDestroy);
+            GetComponent<AudioSource>().PlayOneShot(pickupSound);
+            GetComponent<SpriteRenderer>().enabled = false;
+            Destroy(gameObject, pickupSound.length);
         }
 
         
